@@ -22,12 +22,12 @@ class TransactionRespositoryTest {
     TransactionRespository TransactionRespository = new TransactionRespository(Ds);
     @Test
     void SumOfAllTransactionsAmount() {
-        assertEquals(TransactionRespository.GetTotalTransactionAmount(), 3874.17);
+        assertEquals(TransactionRespository.GetTotalTransactionAmount(), 4860.17);
     }
 
     @Test
     void MaxTransactionAmountShouldBeReturned() {
-        assertEquals(TransactionRespository.GetMaxTransactionAmount(), 985.0);
+        assertEquals(TransactionRespository.GetMaxTransactionAmount(), 986.0);
         assertNotEquals(TransactionRespository.GetMaxTransactionAmount(), 100);
     }
 
@@ -45,8 +45,8 @@ class TransactionRespositoryTest {
         Transaction trx3 = new Transaction();
         trx1.setMtn((long) 5465465);
         trx2.setMtn((long) 5465466);
-        trx3.setMtn((long) 32612651);
-        List<Transaction> transactionList = Stream.of(trx1, trx2, trx3).collect(Collectors.toList());
+        trx3.setMtn((long) 100);
+        List<Transaction> transactionList = Stream.of(trx3, trx1, trx2).collect(Collectors.toList());
 
         assertEquals(TransactionRespository.GetTop3TransactionsByAmount().stream().map(Transaction::getMtn).collect(Collectors.toList()),
                 transactionList.stream().map(Transaction::getMtn).collect(Collectors.toList()) );
@@ -69,7 +69,7 @@ class TransactionRespositoryTest {
     @Test
     void TransactionIdOfUniqueTransactionsMustMatch() {
         var expected = new ArrayList<>(TransactionRespository.GetUniqueTransactions().stream().map(Transaction::getMtn).toList());
-        long[] testData = {5465466, 663458, 1284564, 96132456, 5465465, 1651665, 6516461, 32612651, 36448252, 645645111, 45431585};
+        long[] testData = {100, 5465466, 663458, 1284564, 96132456, 5465465, 1651665, 6516461, 32612651, 36448252, 645645111, 45431585};
         List<Long> actual = new ArrayList<>(Arrays.stream(testData).boxed().toList());
         Collections.sort(expected);
         Collections.sort(actual);
@@ -81,7 +81,7 @@ class TransactionRespositoryTest {
         var trx = TransactionRespository.GetTransactionByBeneficiaryName();
         for (var t: trx.entrySet()) {
             if(t.getKey().equals("Ben Younger")) {
-                assertEquals(t.getValue().size(), 2);
+                assertEquals(t.getValue().size(), 3);
             } else {
                 assertEquals(t.getValue().size(), 1);
             }
@@ -92,6 +92,6 @@ class TransactionRespositoryTest {
     void ClientWithAnyComplianceIssue() {
         assertEquals(TransactionRespository.GetTransactionWithComplianceIssue("Billy Kimber").size(), 0 );
         assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Tom Shelby").size(), 2);
-        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Ben Younger").size(), 2);
+        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Ben Younger").size(), 3);
     }
 }
