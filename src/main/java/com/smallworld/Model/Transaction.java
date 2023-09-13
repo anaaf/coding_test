@@ -1,11 +1,11 @@
 package com.smallworld.Model;
 
-import lombok.Setter;
-import lombok.Getter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
-@Getter
-@Setter
+/*@Getter
+@Setter*/
+@Data
 public class Transaction {
     @JsonProperty("mtn")
     private Long Mtn;
@@ -25,4 +25,18 @@ public class Transaction {
     private Boolean IssueSolved;
     @JsonProperty("issueMessage")
     private String IssueMessage;
+
+    @Override
+    public boolean equals(Object obj) {
+        Transaction trx = (Transaction) obj;
+        return this.getMtn().equals(trx.getMtn());
+    }
+    @Override
+    public int hashCode() {
+        return Mtn.hashCode();
+    }
+
+    public Transaction Get() {
+        return this;
+    }
 }
