@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 class TransactionServiceTest {
 
     Dotenv dotenv = Dotenv.load();
-    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_FILE_PATH"));
+    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_TEST_DATA_FILE_PATH"));
     TransactionRespository TransactionRespository = new TransactionRespository(Ds);
     TransactionService TransactionService = new TransactionService(TransactionRespository);
 

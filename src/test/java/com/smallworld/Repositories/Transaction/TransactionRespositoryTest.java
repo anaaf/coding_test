@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class TransactionRespositoryTest {
     Dotenv dotenv = Dotenv.load();
-    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_FILE_PATH"));
+    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_TEST_DATA_FILE_PATH"));
     TransactionRespository TransactionRespository = new TransactionRespository(Ds);
     @Test
     void SumOfAllTransactionsAmount() {
@@ -86,5 +86,12 @@ class TransactionRespositoryTest {
                 assertEquals(t.getValue().size(), 1);
             }
         }
+    }
+
+    @Test
+    void ClientWithAnyComplianceIssue() {
+        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue("Billy Kimber").size(), 0 );
+        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Tom Shelby").size(), 2);
+        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Ben Younger").size(), 2);
     }
 }
