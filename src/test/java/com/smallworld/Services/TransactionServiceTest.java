@@ -27,8 +27,10 @@ class TransactionServiceTest {
     @Test
     void TopMoneySenderShouldBeReturned() {
         HashMap<String, Double> topsenders = new HashMap<>();
-        topsenders.put("Arthur Shelby", 985.0);
         topsenders.put("Arthur 2 Shelby", 985.0);
+        assertNotEquals(TransactionService.GetTopSender(), topsenders);
+        topsenders.clear();
+        topsenders.put("Anaaf Jawed", 986.0);
         assertEquals(TransactionService.GetTopSender(), topsenders);
     }
 
