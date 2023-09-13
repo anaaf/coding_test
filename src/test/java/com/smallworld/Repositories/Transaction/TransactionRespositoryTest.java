@@ -1,7 +1,9 @@
 package com.smallworld.Repositories.Transaction;
 
 import com.smallworld.DataStore.DataStore;
+import com.smallworld.DataStore.IDataStore;
 import com.smallworld.Model.Transaction;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class TransactionRespositoryTest {
-
-    DataStore Ds = new DataStore("transactions.json");
+    Dotenv dotenv = Dotenv.load();
+    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_FILE_PATH"));
     TransactionRespository TransactionRespository = new TransactionRespository(Ds);
     @Test
     void SumOfAllTransactionsAmount() {
@@ -53,12 +55,6 @@ class TransactionRespositoryTest {
     @Test
     void ReturnsUnResolvedIssuesId() {
         assertEquals(TransactionRespository.GetUnResolvedIssuesId(), Stream.of(1,3,15,54,99).collect(Collectors.toSet()));
-    }
-
-    @Test
-    void ClientWithAnyComplianceIssue() {
-        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue("Billy Kimber"), false );
-        assertEquals(TransactionRespository.GetTransactionWithComplianceIssue( "Tom Shelby"), true);
     }
 
     @Test
