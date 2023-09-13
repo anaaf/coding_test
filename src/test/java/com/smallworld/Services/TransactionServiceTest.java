@@ -1,5 +1,7 @@
 package com.smallworld.Services;
 
+import com.smallworld.Common.IMapper;
+import com.smallworld.Common.ObjectMapperWrapper;
 import com.smallworld.DataStore.DataStore;
 import com.smallworld.DataStore.IDataStore;
 import com.smallworld.Repositories.Transaction.TransactionRespository;
@@ -12,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class TransactionServiceTest {
-
-    Dotenv dotenv = Dotenv.load();
-    IDataStore Ds = new DataStore(dotenv.get("TRANSACTION_TEST_DATA_FILE_PATH"));
+    Dotenv _Dotenv = Dotenv.load();
+    IMapper Mapper = new ObjectMapperWrapper();
+    IDataStore Ds = new DataStore(_Dotenv.get("TRANSACTION_TEST_DATA_FILE_PATH"), Mapper);
     TransactionRespository TransactionRespository = new TransactionRespository(Ds);
     TransactionService TransactionService = new TransactionService(TransactionRespository);
 
