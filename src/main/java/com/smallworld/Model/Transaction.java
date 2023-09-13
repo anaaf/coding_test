@@ -36,7 +36,18 @@ public class Transaction {
         return Mtn.hashCode();
     }
 
-    public Transaction Get() {
-        return this;
+    @Override
+    public String toString() {
+        return "\n{\n" +
+                "mtn: " + getMtn() + "\n" +
+                "amount: " + getAmount() + "\n" +
+                "senderFullName: " + getSenderFullName() + "\n" +
+                "senderAge: " + getSenderAge() + "\n" +
+                "beneficiaryFullName: " + getBeneficiaryFullName() + "\n" +
+                "beneficiaryAge: " + getBeneficiaryAge() + "\n" +
+                "issueId: " + getIssueId() + "\n" +
+                "issueSolved: " + getIssueSolved() + "\n" +
+                "issueMessage: " + getIssueMessage() + "\n" +
+                "}";
     }
 }
