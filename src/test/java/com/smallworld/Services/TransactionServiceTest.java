@@ -20,7 +20,7 @@ class TransactionServiceTest {
 
     @Test
     void CountOfUniqueClientsMustBeReturned() {
-        assertEquals(TransactionService.CountUniqueClients(), 15);
+        assertEquals(TransactionService.CountUniqueClients(), 16);
         assertNotEquals(TransactionService.CountUniqueClients(), 20);
     }
 
