@@ -10,9 +10,9 @@ This project implements a Transaction Reader Service Repository, designed to fet
 
 * Mapper: Reponsibile to map json objects to data model
 
-* Service: Manages the core business logic for processing transactions, including validation, enrichment, and aggregation.
+* Service: Manages the core business logic for processing transactions, data transformation, adapting data to the conusiming needs, including validation, enrichment, and aggregation.
 
-* Repository: Handles the storage and retrieval of transaction data, ensuring data integrity and persistence.
+* Repository: Handles the storage, retrieval, filtering, quering of transaction data, ensuring data integrity.
 
 This project follows solid and clean code practices to make software maintainable, extensible, readable and loosely coupled (dependency on interfaces not implementation)
 
