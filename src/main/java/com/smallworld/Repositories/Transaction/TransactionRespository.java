@@ -54,10 +54,13 @@ public class TransactionRespository extends BaseRepositoryFile<Transaction> impl
                 .mapToDouble(Double::doubleValue).sum();
     }
 
-    public Collection<Transaction> GetTopSender() {
-        var maxTrx = GetMaxTransactionAmount();
-        var topSender = Find(trx -> trx.getAmount().equals(maxTrx));
-        return GetUniqueTransactions(topSender);
+    public Transaction GetTopSender() {
+              return GetUniqueTransactions().stream().sorted(
+                Comparator.comparing(Transaction::getAmount)
+                        .thenComparing(Transaction::getMtn)
+                        .reversed()
+                )
+                .toList().get(0);
     }
 
     public Collection<Transaction> GetTop3TransactionsByAmount() {

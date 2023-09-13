@@ -9,7 +9,7 @@ public interface ITransactionRespository extends IBaseRepository<Transaction> {
     double GetMaxTransactionAmount();
     double GetTotalTransactionAmountSentBy(String senderFullName);
     double GetTotalTransactionAmount();
-    Collection<Transaction> GetTopSender();
+    Transaction GetTopSender();
     Collection<Transaction> GetTop3TransactionsByAmount();
     HashSet<String> GetUniqueClients();
     Collection<Transaction> GetUniqueTransactions();

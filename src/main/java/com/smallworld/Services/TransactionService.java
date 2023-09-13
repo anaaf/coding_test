@@ -3,7 +3,10 @@ package com.smallworld.Services;
 import com.smallworld.Model.Transaction;
 import com.smallworld.Repositories.Transaction.ITransactionRespository;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TransactionService implements ITransactionService{
 
@@ -25,12 +28,10 @@ public class TransactionService implements ITransactionService{
     }
 
     public Map<String, Double> GetTopSender() {
-        Map<String, Double> TopSenderNames = new HashMap<>();
-        Collection<Transaction> maxTrx = TransactionRepository.GetTopSender();
-        for(var trx: maxTrx) {
-            TopSenderNames.put(trx.getSenderFullName(), trx.getAmount());
-        }
-        return TopSenderNames;
+        var topSender = TransactionRepository.GetTopSender();
+        var topSenderMap = new HashMap<String, Double>();
+        topSenderMap.put(topSender.getSenderFullName(), topSender.getAmount());
+        return topSenderMap;
     }
 
     public List<Transaction> GetTop3TransactionsByAmount() {
