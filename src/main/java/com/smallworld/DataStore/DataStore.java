@@ -1,6 +1,7 @@
 package com.smallworld.DataStore;
 
-import com.smallworld.Common.Mapper;
+import com.smallworld.Common.IMapper;
+import com.smallworld.Common.ObjectMapperWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +10,10 @@ import java.util.Collection;
 
 public class DataStore implements IDataStore  {
     private String Filepath;
-    public DataStore(String filepath) {
+    private IMapper Mapper;
+    public DataStore(String filepath, IMapper mapper) {
         Filepath = filepath;
+        Mapper = mapper;
     }
 
     public <T> Collection<T> Map(Class<T[]> type) {

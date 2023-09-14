@@ -1,5 +1,7 @@
 package com.smallworld;
 
+import com.smallworld.Common.IMapper;
+import com.smallworld.Common.ObjectMapperWrapper;
 import com.smallworld.DataStore.DataStore;
 import com.smallworld.DataStore.IDataStore;
 import com.smallworld.Model.Transaction;
@@ -17,8 +19,9 @@ public class TransactionDataFetcher {
 
     private ITransactionService TransactionService;
     public TransactionDataFetcher() {
-        Dotenv dotenv = Dotenv.load();
-        IDataStore ds = new DataStore(dotenv.get("TRANSACTION_FILE_PATH"));
+        Dotenv _Dotenv = Dotenv.load();
+        IMapper Mapper = new ObjectMapperWrapper();
+        IDataStore ds = new DataStore(_Dotenv.get("TRANSACTION_FILE_PATH"), Mapper);
         ITransactionRespository trRepo = new TransactionRespository(ds);
         TransactionService = new TransactionService(trRepo);
     }
