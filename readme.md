@@ -33,7 +33,7 @@ This project follows solid and clean code practices to make software maintainabl
 
 # Unit Test
 
-This project contains unit test for repository and service layer. Service layer contains unit test where some transformation or business logic is presented but not all units in service layer. Also some unit in repository doesnot have test because that logic is tested in service layer unit tests.
+This project contains unit test/ data test for repository and service layer. Service layer contains unit test where some transformation or business logic is presented but not all units in service layer. Also some unit in repository doesnot have test because that logic is tested in service layer unit tests.
 
 # Key Points
   * [Dependency Injection not used] As this is barebone java project so DI is not implemented because by adding spring dependency on it to use dependency container will be a overkill for this project.
